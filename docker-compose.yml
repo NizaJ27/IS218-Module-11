@@ -2,7 +2,7 @@
 
 # ---------------------------------------------
 # Docker Compose Configuration File
-# ---------------------------------------------
+# NOTE: Omitting explicit `version` to avoid deprecation warnings for newer Docker Compose.
 
 # This Docker Compose file defines and configures the services required to run
 # the FastAPI Calculator application. Docker Compose is a tool that allows you

@@ -6,6 +6,9 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field, field_validator  # Use @validator for Pydantic 1.x
 from fastapi.exceptions import RequestValidationError
 from app.operations import add, subtract, multiply, divide  # Ensure correct import path
+from app.db import init_db, SessionLocal
+from app.operations import users as user_ops
+from app import schemas
 import uvicorn
 import logging
 
@@ -115,4 +118,19 @@ async def divide_route(operation: OperationRequest):
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 if __name__ == "__main__":
+    # Initialize DB tables for local runs
+    init_db()
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
+@app.post("/users", response_model=schemas.UserRead)
+def register_user(user_in: schemas.UserCreate):
+    """Register a new user. Returns the created user without password."""
+    db = SessionLocal()
+    try:
+        user = user_ops.create_user(db, user_in)
+        return user
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    finally:
+        db.close()

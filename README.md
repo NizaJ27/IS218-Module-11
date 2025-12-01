@@ -263,6 +263,22 @@ Then submit the GitHub repository link as instructed.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [GitHub SSH Setup Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 
+## Running Tests Locally
+
+Install dependencies and run pytest:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pytest -q
+```
+
+## CI / Docker Hub
+
+- The repository includes a GitHub Actions workflow at `.github/workflows/ci.yml` that runs tests against a Postgres service and (on success) builds and pushes a Docker image to Docker Hub.
+- Docker Hub repository (replace with your repo): `docker.io/<your-username>/is218-module-10`
+
 ## Module 9 — PostgreSQL & pgAdmin (FastAPI + Postgres)
 
 Follow these steps to satisfy the Module 9 assignment requirements.

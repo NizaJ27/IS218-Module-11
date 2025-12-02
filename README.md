@@ -279,6 +279,15 @@ pytest -q
 - The repository includes a GitHub Actions workflow at `.github/workflows/ci.yml` that runs tests against a Postgres service and (on success) builds and pushes a Docker image to Docker Hub.
 - Docker Hub repository (replace with your repo): `docker.io/<your-username>/is218-module-10`
 
+**Docker Hub**: Replace with your published image, e.g. `docker.io/<your-username>/is218-module-11`.
+
+To run the newly added calculation tests specifically:
+
+```bash
+pytest tests/unit/test_calculation.py -q
+pytest tests/integration/test_calculations_integration.py -q
+```
+
 ## Module 9 — PostgreSQL & pgAdmin (FastAPI + Postgres)
 
 Follow these steps to satisfy the Module 9 assignment requirements.

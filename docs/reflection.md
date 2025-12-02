@@ -14,6 +14,12 @@ Challenges and notes:
 - GitHub Actions requires `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN` secrets for pushing images; configure those before relying on the deploy step.
 - The integration tests assume the application creates tables at startup via `app.db.init_db()`; for production use, migration tooling (Alembic) is recommended.
 
+This module focused on modeling and validation for calculations:
+
+- Added `Calculation` SQLAlchemy model and `CalculationType` enum.
+- Introduced Pydantic schemas `CalculationCreate` and `CalculationRead` with validation (division by zero guarded).
+- Implemented a simple factory (`app.operations.calculations`) to compute and optionally persist results.
+
 Next steps (not performed here):
 
 - Add authentication endpoints (login) and token-based auth.
